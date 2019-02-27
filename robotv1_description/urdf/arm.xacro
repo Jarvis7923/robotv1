@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+  <xacro:include filename="$(find robotv1_description)/urdf/gripper.xacro"/>
+  <xacro:include filename="$(find robotv1_description)/urdf/arm.gazebo"/>
+
+  <xacro:property name="lenx_sho" value="0.06"/>
+  <xacro:property name="leny_sho" value="0.03"/>
+  <xacro:property name="lenz_sho" value="0.04"/>
+ 
+  <xacro:property name="lenx_upp_arm" value="0.02"/>
+  <xacro:property name="leny_upp_arm" value="0.06"/>
+  <xacro:property name="lenz_upp_arm" value="0.12"/>
+  
+  <xacro:property name="lenx_low_arm" value="0.02"/>
+  <xacro:property name="leny_low_arm" value="0.04"/>
+  <xacro:property name="lenz_low_arm" value="0.07"/>
+  
+  <xacro:property name="lenx_wri_1" value="0.04"/>
+  <xacro:property name="leny_wri_1" value="0.06"/>
+  <xacro:property name="lenz_wri_1" value="0.03"/>
+
+
+ <xacro:macro name="arm" params="prefix" >
+    <joint name="${prefix}_shoulder_1_joint" type="revolute" >
+      <parent link="pelvis"/>
+      <child link="${prefix}_sho"/>
+      <origin xyz="0 0 ${lenz_pelvis/2}"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.7"/>
+      <limit effort="0.2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+    </joint>
+
+    <link name="${prefix}_sho" >
+      <visual>
+        <origin xyz="0 0 ${lenz_sho/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_sho} ${leny_sho} ${lenz_sho}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <xacro:box_inertia  lenx="${lenx_sho}" leny="${leny_sho}" lenz="${lenz_sho}" />
+      <collision>
+        <origin xyz="0 0 ${lenz_sho/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_sho} ${leny_sho} ${lenz_sho}"/>
+        </geometry>
+     </collision>
+   </link>
+
+   <joint name="${prefix}_shoulder_2_joint" type="revolute" >
+     <parent link="${prefix}_sho"/>
+     <child link="${prefix}_upp_arm"/>
+     <origin xyz="0 0 ${lenz_sho/2}"/>
+     <axis xyz="0 1 0"/>
+     <dynamics damping="0.7"/>
+     <limit effort="0.2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+   </joint>
+
+   <link name="${prefix}_upp_arm" >
+     <visual>
+       <origin xyz="0 0 ${lenz_upp_arm/2}" rpy="0 0 0"/>
+       <geometry>
+         <box size="${lenx_upp_arm} ${leny_upp_arm} ${lenz_upp_arm}"/>
+       </geometry>
+       <material name="orange"/>
+     </visual>
+     <xacro:box_inertia  lenx="${lenx_upp_arm}" leny="${leny_upp_arm}" lenz="${lenz_upp_arm}" />
+     <collision>
+       <origin xyz="0 0 ${lenz_upp_arm/2}" rpy="0 0 0"/>
+       <geometry>
+         <box size="${lenx_upp_arm} ${leny_upp_arm} ${lenz_upp_arm}"/>
+       </geometry>
+    </collision>
+  </link>
+  
+  <joint name="${prefix}_elbow_joint" type="revolute" >
+    <parent link="${prefix}_upp_arm"/>
+    <child link="${prefix}_low_arm"/>
+    <origin xyz="0 0 ${lenz_upp_arm}"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" velocity="1.0" lower="0" upper="${pi}" />
+  </joint>
+
+  <link name="${prefix}_low_arm" >
+    <visual>
+      <origin xyz="0 0 ${lenz_low_arm/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${lenx_low_arm} ${leny_low_arm} ${lenz_low_arm}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <xacro:box_inertia  lenx="${lenx_low_arm}" leny="${leny_low_arm}" lenz="${lenz_low_arm}" />
+    <collision>
+      <origin xyz="0 0 ${lenz_low_arm/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${lenx_low_arm} ${leny_low_arm} ${lenz_low_arm}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="${prefix}_wrist_1_joint" type="revolute" >
+    <parent link="${prefix}_low_arm"/>
+    <child link="${prefix}_wri_1"/>
+    <origin xyz="0 0 ${lenz_low_arm}"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+  </joint>
+
+  <link name="${prefix}_wri_1" >
+    <visual>
+      <origin xyz="0 0 ${lenz_wri_1/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${lenx_wri_1} ${leny_wri_1} ${lenz_wri_1}"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <xacro:box_inertia  lenx="${lenx_wri_1}" leny="${leny_wri_1}" lenz="${lenz_wri_1}" />
+    <collision>
+      <origin xyz="0 0 ${lenz_wri_1/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${lenx_wri_1} ${leny_wri_1} ${lenz_wri_1}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="${prefix}_wrist_2_joint" type="revolute" >
+    <parent link="${prefix}_wri_1"/>
+    <child link="${prefix}_gripper"/>
+    <origin xyz="0 0 ${lenz_wri_1}"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+  </joint>
+
+  <xacro:gripper prefix="${prefix}"/>
+  <transmission name="${prefix}_shoulder_1_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_shoulder_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_shoulder_1_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="${prefix}_shoulder_2_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_shoulder_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_shoulder_2_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="${prefix}_elbow_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_elbow_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_elbow_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="${prefix}_wrist_1_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_wrist_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_wrist_1_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="${prefix}_wrist_2_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_wrist_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_wrist_2_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <xacro:arm_gazebo_reference prefix="${prefix}"/>
+
+</xacro:macro>
+
+
+
+</robot> 

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="upper_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find robotv1_description)/urdf/leg.xacro"/>
+  <xacro:property name="lenx_pelvis" value="0.08"/>
+  <xacro:property name="leny_pelvis" value="0.16"/>
+  <xacro:property name="lenz_pelvis" value="0.06"/>
+
+  <link name="pelvis" >
+    <visual>
+      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <xacro:box_inertia lenx="${lenx_pelvis}" leny="${leny_pelvis}" lenz="${lenz_pelvis}"/>
+    <collision>
+      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <xacro:leg prefix="left_leg" reflect="1" />
+  <xacro:leg prefix="right_leg" reflect="-1" />
+
+</robot>

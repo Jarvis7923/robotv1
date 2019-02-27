@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+
+  <xacro:property name="armWidth" value=".025"/>
+  <xacro:property name="upperArmLength" value="0.15"/>
+  <xacro:property name="lowerArmLength" value="0.07"/>
+
+  <xacro:property name="elbowEff" value="1.0"/>
+  <xacro:property name="elbowVel" value="1.0"/>
+
+  <xacro:macro name="robot_v1_arm" params="prefix reflect">
+    <link name="${prefix}_upper_arm">
+      <collision>
+        <origin xyz="0 0 ${upperArmLength/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${armWidth} ${armWidth} ${upperArmLength}"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 ${upperArmLength/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${armWidth} ${armWidth} ${upperArmLength}"/>
+        </geometry>
+        <material name="orange"/>
+      </visual>
+        <xacro:box_inertia  lenx="${armWidth}" leny="${armWidth}" lenz="${upperArmLength}"/>
+    </link>
+
+    <link name="${prefix}_lower_arm">
+      <collision>
+        <origin xyz="0 0 ${lowerArmLength/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${armWidth} ${armWidth} ${lowerArmLength}"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 ${lowerArmLength/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${armWidth} ${armWidth} ${lowerArmLength}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <xacro:box_inertia lenx="${armWidth}" leny="${armWidth}" lenz="${upperArmLength}"/>
+    </link>
+
+    <joint name="elbow" type="revolute">
+      <parent link="${prefix}_upper_arm"/>
+      <child link="${prefix}_lower_arm"/>
+      <origin xyz="0 0 ${upperArmLength}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="0" upper="${2*pi}" effort="${elbowEff}" velocity="${elbowVel}"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>
+

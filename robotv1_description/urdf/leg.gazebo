@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="leg_gazebo_reference" params="prefix" >
+    <!-- Link1 -->
+    <gazebo reference="${prefix}_hip_2" >
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="${prefix}_hip_3" >
+      <mu1>0.2</mu1>
+      <mu2>0.2</mu2>
+      <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="${prefix}_upp_leg" >
+      <mu1>0.2</mu1>
+      <mu2>0.2</mu2>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="${prefix}_low_leg" >
+      <mu1>0.2</mu1>
+      <mu2>0.2</mu2>
+      <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="${prefix}_ang_1" >
+      <mu1>0.2</mu1>
+      <mu2>0.2</mu2>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="${prefix}_ang_2" >
+      <mu1>0.2</mu1>
+    
+      <mu2>0.2</mu2>
+      <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="${prefix}_foot" >
+      <mu1>0.4</mu1>
+      <mu2>0.4</mu2>
+      <material>Gazebo/Orange</material>
+    </gazebo>
+  </xacro:macro>
+
+</robot>
+
+
+
+

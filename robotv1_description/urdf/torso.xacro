@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="torso" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="lenx_pelvis" value="0.08"/>
+  <xacro:property name="leny_pelvis" value="0.16"/>
+  <xacro:property name="lenz_pelvis" value="0.06"/>
+
+<xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+
+  <link name="pelvis" >
+    <visual>
+      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <xacro:box_inertia lenx="${lenx_pelvis}" leny="${leny_pelvis}" lenz="${lenz_pelvis}"/>
+    <collision>
+      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="pelvis" >
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  
+</robot>

@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <!--Constant for the robotv1-->
+
+  <xacro:property name="lenx_hip_2" value="0.04"/>
+  <xacro:property name="leny_hip_2" value="0.03"/>
+  <xacro:property name="lenz_hip_2" value="0.06"/>
+
+  <xacro:property name="lenx_hip_3" value="0.07"/>
+  <xacro:property name="leny_hip_3" value="0.03"/>
+  <xacro:property name="lenz_hip_3" value="0.09"/>
+
+  <xacro:property name="lenx_upp_leg" value="0.03"/>
+  <xacro:property name="leny_upp_leg" value="0.04"/>
+  <xacro:property name="lenz_upp_leg" value="0.06"/>
+
+  <xacro:property name="lenx_low_leg" value="0.02"/>
+  <xacro:property name="leny_low_leg" value="0.02"/>
+  <xacro:property name="lenz_low_leg" value="0.13"/>
+  
+  <xacro:property name="lenx_ang_1" value="0.04"/>
+  <xacro:property name="leny_ang_1" value="0.03"/>
+  <xacro:property name="lenz_ang_1" value="0.06"/>
+
+  <xacro:property name="lenx_ang_2" value="0.03"/>
+  <xacro:property name="leny_ang_2" value="0.04"/>
+  <xacro:property name="lenz_ang_2" value="0.06"/>
+
+  <xacro:property name="lenx_foot" value="0.1"/>
+  <xacro:property name="leny_foot" value="0.04"/>
+  <xacro:property name="lenz_foot" value="0.002"/>
+ 
+  <xacro:include filename="$(find robotv1_description)/urdf/leg.gazebo" />
+  <xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+
+  <xacro:macro name="leg" params="prefix reflect" >
+    <joint name="${prefix}_hip_1_joint" type="revolute" >
+      <parent link="pelvis"/>
+      <child link="${prefix}_hip_2"/>
+      <origin xyz="0 ${leny_pelvis*reflect/2} 0"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping="0.7"/>
+      <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+    </joint>
+    
+    <link name="${prefix}_hip_2" >
+      <visual>
+        <origin xyz="0 ${leny_hip_2*reflect/2} 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_hip_2} ${leny_hip_2} ${lenz_hip_2}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <xacro:box_inertia  lenx="${lenx_hip_2}" leny="${leny_hip_2}" lenz="${lenz_hip_2}" />
+      <collision>
+        <origin xyz="0 ${leny_hip_2*reflect/2} 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_hip_2} ${leny_hip_2} ${lenz_hip_2}"/>
+        </geometry>
+     </collision>
+   </link>
+ 
+   <joint name="${prefix}_hip_2_joint" type="revolute" >
+      <parent link="${prefix}_hip_2"/>
+      <child link="${prefix}_hip_3"/>
+      <origin xyz= "0 ${leny_hip_2*reflect} 0"/>
+      <axis xyz="1 0 0"/>
+      <dynamics damping="0.7"/>
+      <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+    </joint>
+
+    <link name="${prefix}_hip_3" >
+      <visual>
+        <origin xyz="0 0 ${-lenz_hip_3/2 }" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_hip_3} ${leny_hip_3} ${lenz_hip_3}"/>
+        </geometry>
+        <material name="orange"/>
+      </visual>
+     <xacro:box_inertia  lenx="${lenx_hip_3}" leny="${leny_hip_3}" lenz="${lenz_hip_3}" />
+     <collision>
+        <origin xyz="0 0 ${-1*lenz_hip_3/2 }" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_hip_3} ${leny_hip_3} ${lenz_hip_3}"/>
+        </geometry>
+     </collision>
+    </link>
+    
+    <joint name="${prefix}_hip_3_joint" type="revolute" >
+      <parent link="${prefix}_hip_3"/>
+      <child link="${prefix}_upp_leg"/>
+      <origin xyz="0 0 ${-lenz_hip_3}"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.7"/>
+      <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+    </joint>
+
+    <link name="${prefix}_upp_leg" >
+      <visual>
+        <origin xyz="0 0 ${-lenz_upp_leg/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_upp_leg} ${leny_upp_leg} ${lenz_upp_leg}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+     <xacro:box_inertia  lenx="${lenx_upp_leg}" leny="${leny_upp_leg}" lenz="${lenz_upp_leg}" />
+     <collision>
+        <origin xyz="0 0 ${-lenz_upp_leg/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_upp_leg} ${leny_upp_leg} ${lenz_upp_leg}"/>
+        </geometry>
+     </collision>
+    </link>
+
+    <joint name="${prefix}_knee_joint" type="revolute" >
+      <parent link="${prefix}_upp_leg"/>
+      <child link="${prefix}_low_leg"/>
+      <origin xyz="0 0 ${-lenz_upp_leg}"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping="0.7"/>
+      <limit effort="2" velocity="1.0" lower="0" upper="${7*pi/8}" />
+    </joint>
+
+    <link name="${prefix}_low_leg" >
+      <visual>
+        <origin xyz="0 0 ${-lenz_low_leg/2}" rpy="0 0 0"/>
+        <geometry>
+         <box size="${lenx_low_leg} ${leny_low_leg} ${lenz_low_leg}"/>
+        </geometry>
+        <material name="orange"/>
+      </visual>
+     <xacro:box_inertia  lenx="${lenx_low_leg}" leny="${leny_low_leg}" lenz="${lenz_low_leg}" />
+     <collision>
+       <origin xyz="0 0 ${-lenz_low_leg/2}" rpy="0 0 0"/>
+       <geometry>
+         <box size="${lenx_low_leg} ${leny_low_leg} ${lenz_low_leg}"/>
+       </geometry>
+     </collision>
+    </link>
+
+    <joint name="${prefix}_ang_1_joint" type="revolute" >
+      <parent link="${prefix}_low_leg"/>
+      <child link="${prefix}_ang_1"/>
+      <origin xyz="0 0 ${-lenz_low_leg+lenz_ang_1/2}" rpy="0 0 0"/>
+      <axis xyz="1 0 0"/>
+      <dynamics damping="0.7"/>
+      <limit effort="2" velocity="1.0" lower="${-pi/4}" upper="${pi/4}" />
+    </joint>
+
+    <link name="${prefix}_ang_1" >
+      <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_ang_1} ${leny_ang_1} ${lenz_ang_1}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+     <xacro:box_inertia  lenx="${lenx_ang_1}" leny="${leny_ang_1}" lenz="${lenz_ang_1}" />
+     <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <box size="${lenx_ang_1} ${leny_ang_1} ${lenz_ang_1}"/>
+       </geometry>
+      </collision>
+     </link>
+
+     <joint name="${prefix}_ang_2_joint" type="revolute" >
+       <parent link="${prefix}_ang_1"/>
+       <child link="${prefix}_ang_2"/>
+       <origin xyz="${-lenx_ang_1/2} 0 0"/>
+       <axis xyz="0 1 0"/>
+       <dynamics damping="0.7"/>
+       <limit effort="2" velocity="1.0" lower="${-pi/4}" upper="${pi/4}" />
+     </joint>
+
+     <link name="${prefix}_ang_2" >
+       <visual>
+       <origin xyz="0 0 ${-lenz_ang_2/2}" rpy="0 0 0"/>
+         <geometry>
+           <box size="${lenx_ang_2} ${leny_ang_2} ${lenz_ang_2}"/>
+         </geometry>
+         <material name="orange"/>
+       </visual>
+     <xacro:box_inertia  lenx="${lenx_ang_2}" leny="${leny_ang_2}" lenz="${lenz_ang_2}" />
+     
+      <collision>
+       <origin xyz="${-lenx_ang_1} 0 ${-lenz_ang_2/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_ang_2} ${leny_ang_2} ${lenz_ang_2}"/>
+        </geometry>
+      </collision>
+    </link>
+   
+    <joint name="${prefix}_foot_joint" type="fixed" >
+      <parent link="${prefix}_ang_2"/>
+      <child link="${prefix}_foot"/>
+      <origin xyz="0 0 ${-lenz_ang_2}"/>
+    </joint>
+
+    <link name="${prefix}_foot" >
+      <visual>
+        <origin xyz="${lenx_foot/2-lenx_ang_2/2} 0 ${-lenz_foot/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lenx_foot} ${leny_foot} ${lenz_foot}"/>
+        </geometry>
+        <material name="orange"/>
+      </visual>
+     <xacro:box_inertia  lenx="${lenx_foot}" leny="${leny_foot}" lenz="${lenz_foot}" />
+
+     <collision>
+       <origin xyz="${lenx_foot/2-lenx_ang_2/2} 0 ${-lenz_foot/2}" rpy="0 0 0"/>
+       <geometry>
+          <box size="${lenx_foot} ${leny_foot} ${lenz_foot}"/>
+       </geometry>
+     </collision>
+    </link>
+ 
+    <transmission name="${prefix}_hip_1_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_hip_1_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_hip_1_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  
+    <transmission name="${prefix}_hip_2_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_hip_2_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_hip_2_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+   
+    <transmission name="${prefix}_hip_3_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_hip_3_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_hip_3_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="${prefix}_knee_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_knee_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_knee_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="${prefix}_ang_1_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_ang_1_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_ang_1_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="${prefix}_ang_2_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_ang_2_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_ang_2_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+   <xacro:leg_gazebo_reference prefix="${prefix}"/>
+ </xacro:macro>
+
+</robot>

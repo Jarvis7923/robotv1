@@ -1,0 +1,82 @@
+<robot name="robotv1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robotv1_description)/urdf/robotv1.gazebo"/>
+  <xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+
+  <xacro:property name="torsoZ" value=".1"/>
+  <xacro:property name="torsoY" value=".05"/>
+  <xacro:property name="torsoX" value=".05"/>
+
+  <xacro:include filename="$(find robotv1_description)/urdf/arm.xacro"/>
+  <xacro:include filename="$(find robotv1_description)/urdf/gripper.xacro"/>
+
+  <xacro:robot_v1_arm prefix="left" reflect="1.0"/>
+  <xacro:robot_v1_gripper prefix="left"/>
+
+
+  <link name="torso">
+    <visual>
+      <origin xyz="0 0 ${torsoZ/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${torsoX} ${torsoY} ${torsoZ}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${torsoZ/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${torsoX} ${torsoY} ${torsoZ}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia lenx="${torsoX}" leny="${torsoY}" lenz="${torsoZ}"/>
+  </link>
+  
+
+  <joint name="shoulder" type="revolute">
+    <parent link="torso"/>
+    <child link="left_upper_arm"/>
+    <origin xyz="0 ${0} ${torsoZ}" rpy="0 ${pi*2/3} 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="${2*pi}" effort="${elbowEff}" velocity="${elbowVel}"/>
+  </joint>
+
+  <joint name="wrist" type="revolute">
+    <parent link="left_lower_arm"/>
+    <child link="left_gripper"/>
+    <origin xyz="0 0 ${lowerArmLength}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="${2*pi}" effort="${elbowEff}" velocity="${elbowVel}"/>
+  </joint>
+
+  <transmission name="shoulder_trans">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="shoulder_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="elbow_trans">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="elbow">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="wrist_trans">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="wrist">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wrist_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
