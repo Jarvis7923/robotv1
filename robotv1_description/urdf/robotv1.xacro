@@ -10,7 +10,7 @@
 
 <link name="dummy"/>
 <joint name="dummy_to_pelvis" type="fixed">
-  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  <origin xyz="0 0 ${base_pos}" rpy="0 0 0"/>
   <parent link="dummy" />
   <child link="pelvis" />
 </joint>

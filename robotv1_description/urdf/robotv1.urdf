@@ -67,17 +67,17 @@
     <parent link="dummy"/>
     <child link="pelvis"/>
   </joint>
-  <joint name="right_leg_hip_1_joint" type="revolute">
+  <joint name="leftleg_hip_1_joint" type="revolute">
     <parent link="pelvis"/>
-    <child link="right_leg_hip_2"/>
-    <origin xyz="0 -0.08 0"/>
+    <child link="leftleg_hip_2"/>
+    <origin xyz="0 0.08 0"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
   </joint>
-  <link name="right_leg_hip_2">
+  <link name="leftleg_hip_2">
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.015 0"/>
+      <origin rpy="0 0 0" xyz="0 0.015 0"/>
       <geometry>
         <box size="0.04 0.03 0.06"/>
       </geometry>
@@ -88,21 +88,21 @@
       <inertia ixx="0.00729" ixy="0.0" ixz="0.0" iyy="0.00729" iyz="0.0" izz="0.00729"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.015 0"/>
+      <origin rpy="0 0 0" xyz="0 0.015 0"/>
       <geometry>
         <box size="0.04 0.03 0.06"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_hip_2_joint" type="revolute">
-    <parent link="right_leg_hip_2"/>
-    <child link="right_leg_hip_3"/>
-    <origin xyz="0 -0.03 0"/>
+  <joint name="leftleg_hip_2_joint" type="revolute">
+    <parent link="leftleg_hip_2"/>
+    <child link="leftleg_hip_3"/>
+    <origin xyz="0 0.03 0"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
   </joint>
-  <link name="right_leg_hip_3">
+  <link name="leftleg_hip_3">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.045"/>
       <geometry>
@@ -121,15 +121,15 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_hip_3_joint" type="revolute">
-    <parent link="right_leg_hip_3"/>
-    <child link="right_leg_upp_leg"/>
+  <joint name="leftleg_hip_3_joint" type="revolute">
+    <parent link="leftleg_hip_3"/>
+    <child link="leftleg_upp_leg"/>
     <origin xyz="0 0 -0.09"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
   </joint>
-  <link name="right_leg_upp_leg">
+  <link name="leftleg_upp_leg">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
       <geometry>
@@ -148,15 +148,15 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_knee_joint" type="revolute">
-    <parent link="right_leg_upp_leg"/>
-    <child link="right_leg_low_leg"/>
+  <joint name="leftleg_knee_joint" type="revolute">
+    <parent link="leftleg_upp_leg"/>
+    <child link="leftleg_low_leg"/>
     <origin xyz="0 0 -0.06"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="0" upper="2.74889357189" velocity="1.0"/>
   </joint>
-  <link name="right_leg_low_leg">
+  <link name="leftleg_low_leg">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.065"/>
       <geometry>
@@ -175,15 +175,15 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_ang_1_joint" type="revolute">
-    <parent link="right_leg_low_leg"/>
-    <child link="right_leg_ang_1"/>
+  <joint name="leftleg_ang_1_joint" type="revolute">
+    <parent link="leftleg_low_leg"/>
+    <child link="leftleg_ang_1"/>
     <origin rpy="0 0 0" xyz="0 0 -0.1"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
   </joint>
-  <link name="right_leg_ang_1">
+  <link name="leftleg_ang_1">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -202,15 +202,15 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_ang_2_joint" type="revolute">
-    <parent link="right_leg_ang_1"/>
-    <child link="right_leg_ang_2"/>
+  <joint name="leftleg_ang_2_joint" type="revolute">
+    <parent link="leftleg_ang_1"/>
+    <child link="leftleg_ang_2"/>
     <origin xyz="-0.02 0 0"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0.7"/>
     <limit effort="2" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
   </joint>
-  <link name="right_leg_ang_2">
+  <link name="leftleg_ang_2">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
       <geometry>
@@ -229,12 +229,12 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_leg_foot_joint" type="fixed">
-    <parent link="right_leg_ang_2"/>
-    <child link="right_leg_foot"/>
+  <joint name="leftleg_foot_joint" type="fixed">
+    <parent link="leftleg_ang_2"/>
+    <child link="leftleg_foot"/>
     <origin xyz="0 0 -0.06"/>
   </joint>
-  <link name="right_leg_foot">
+  <link name="leftleg_foot">
     <visual>
       <origin rpy="0 0 0" xyz="0.035 0 -0.001"/>
       <geometry>
@@ -253,100 +253,672 @@
       </geometry>
     </collision>
   </link>
-  <transmission name="right_leg_hip_1_tran">
+  <transmission name="leftleg_hip_1_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_hip_1_joint">
+    <joint name="leftleg_hip_1_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_hip_1_motor">
+    <actuator name="leftleg_hip_1_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="right_leg_hip_2_tran">
+  <transmission name="leftleg_hip_2_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_hip_2_joint">
+    <joint name="leftleg_hip_2_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_hip_2_motor">
+    <actuator name="leftleg_hip_2_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="right_leg_hip_3_tran">
+  <transmission name="leftleg_hip_3_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_hip_3_joint">
+    <joint name="leftleg_hip_3_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_hip_3_motor">
+    <actuator name="leftleg_hip_3_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="right_leg_knee_tran">
+  <transmission name="leftleg_knee_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_knee_joint">
+    <joint name="leftleg_knee_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_knee_motor">
+    <actuator name="leftleg_knee_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="right_leg_ang_1_tran">
+  <transmission name="leftleg_ang_1_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_ang_1_joint">
+    <joint name="leftleg_ang_1_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_ang_1_motor">
+    <actuator name="leftleg_ang_1_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="right_leg_ang_2_tran">
+  <transmission name="leftleg_ang_2_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_leg_ang_2_joint">
+    <joint name="leftleg_ang_2_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_leg_ang_2_motor">
+    <actuator name="leftleg_ang_2_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
   <!-- Link1 -->
-  <gazebo reference="right_leg_hip_2">
+  <gazebo reference="leftleg_hip_2">
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="right_leg_hip_3">
+  <gazebo reference="leftleg_hip_3">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
   </gazebo>
-  <gazebo reference="right_leg_upp_leg">
+  <gazebo reference="leftleg_upp_leg">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="right_leg_low_leg">
+  <gazebo reference="leftleg_low_leg">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
   </gazebo>
-  <gazebo reference="right_leg_ang_1">
+  <gazebo reference="leftleg_ang_1">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="right_leg_ang_2">
+  <gazebo reference="leftleg_ang_2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
   </gazebo>
-  <gazebo reference="right_leg_foot">
+  <gazebo reference="leftleg_foot">
     <mu1>0.4</mu1>
     <mu2>0.4</mu2>
     <material>Gazebo/Orange</material>
   </gazebo>
-  <!--<xacro:arm prefix="left_arm" />-->
+  <joint name="rightleg_hip_1_joint" type="revolute">
+    <parent link="pelvis"/>
+    <child link="rightleg_hip_2"/>
+    <origin xyz="0 -0.08 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_hip_2">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 -0.015 0"/>
+      <geometry>
+        <box size="0.04 0.03 0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.00729" ixy="0.0" ixz="0.0" iyy="0.00729" iyz="0.0" izz="0.00729"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.015 0"/>
+      <geometry>
+        <box size="0.04 0.03 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_hip_2_joint" type="revolute">
+    <parent link="rightleg_hip_2"/>
+    <child link="rightleg_hip_3"/>
+    <origin xyz="0 -0.03 0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_hip_3">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+      <geometry>
+        <box size="0.07 0.03 0.09"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.5103"/>
+      <inertia ixx="0.0382725" ixy="0.0" ixz="0.0" iyy="0.0382725" iyz="0.0" izz="0.0382725"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+      <geometry>
+        <box size="0.07 0.03 0.09"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_hip_3_joint" type="revolute">
+    <parent link="rightleg_hip_3"/>
+    <child link="rightleg_upp_leg"/>
+    <origin xyz="0 0 -0.09"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_upp_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.03"/>
+      <geometry>
+        <box size="0.03 0.04 0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.008424" ixy="0.0" ixz="0.0" iyy="0.008424" iyz="0.0" izz="0.008424"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.03"/>
+      <geometry>
+        <box size="0.03 0.04 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_knee_joint" type="revolute">
+    <parent link="rightleg_upp_leg"/>
+    <child link="rightleg_low_leg"/>
+    <origin xyz="0 0 -0.06"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="0" upper="2.74889357189" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_low_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.065"/>
+      <geometry>
+        <box size="0.02 0.02 0.13"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.1404"/>
+      <inertia ixx="0.020241" ixy="0.0" ixz="0.0" iyy="0.020241" iyz="0.0" izz="0.020241"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.065"/>
+      <geometry>
+        <box size="0.02 0.02 0.13"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_ang_1_joint" type="revolute">
+    <parent link="rightleg_low_leg"/>
+    <child link="rightleg_ang_1"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_ang_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.03 0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.00729" ixy="0.0" ixz="0.0" iyy="0.00729" iyz="0.0" izz="0.00729"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.03 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_ang_2_joint" type="revolute">
+    <parent link="rightleg_ang_1"/>
+    <child link="rightleg_ang_2"/>
+    <origin xyz="-0.02 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="2" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
+  </joint>
+  <link name="rightleg_ang_2">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.03"/>
+      <geometry>
+        <box size="0.03 0.04 0.06"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.008424" ixy="0.0" ixz="0.0" iyy="0.008424" iyz="0.0" izz="0.008424"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.04 0 -0.03"/>
+      <geometry>
+        <box size="0.03 0.04 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rightleg_foot_joint" type="fixed">
+    <parent link="rightleg_ang_2"/>
+    <child link="rightleg_foot"/>
+    <origin xyz="0 0 -0.06"/>
+  </joint>
+  <link name="rightleg_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.001"/>
+      <geometry>
+        <box size="0.1 0.04 0.002"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.0216"/>
+      <inertia ixx="0.00028872" ixy="0.0" ixz="0.0" iyy="0.00028872" iyz="0.0" izz="0.00028872"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.001"/>
+      <geometry>
+        <box size="0.1 0.04 0.002"/>
+      </geometry>
+    </collision>
+  </link>
+  <transmission name="rightleg_hip_1_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_hip_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_hip_1_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightleg_hip_2_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_hip_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_hip_2_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightleg_hip_3_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_hip_3_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_hip_3_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightleg_knee_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_knee_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_knee_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightleg_ang_1_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_ang_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_ang_1_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightleg_ang_2_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightleg_ang_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightleg_ang_2_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- Link1 -->
+  <gazebo reference="rightleg_hip_2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="rightleg_hip_3">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="rightleg_upp_leg">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="rightleg_low_leg">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="rightleg_ang_1">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="rightleg_ang_2">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="rightleg_foot">
+    <mu1>0.4</mu1>
+    <mu2>0.4</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <joint name="leftarm_shoulder_1_joint" type="revolute">
+    <parent link="pelvis"/>
+    <child link="leftarm_sho"/>
+    <origin xyz="0 0 0.03"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="leftarm_sho">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.02"/>
+      <geometry>
+        <box size="0.06 0.03 0.04"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.00405" ixy="0.0" ixz="0.0" iyy="0.00405" iyz="0.0" izz="0.00405"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.02"/>
+      <geometry>
+        <box size="0.06 0.03 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="leftarm_shoulder_2_joint" type="revolute">
+    <parent link="leftarm_sho"/>
+    <child link="leftarm_upp_arm"/>
+    <origin xyz="0 0 0.02"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="leftarm_upp_arm">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.06 0.12"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.3888"/>
+      <inertia ixx="0.05832" ixy="0.0" ixz="0.0" iyy="0.05832" iyz="0.0" izz="0.05832"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.06 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="leftarm_elbow_joint" type="revolute">
+    <parent link="leftarm_upp_arm"/>
+    <child link="leftarm_low_arm"/>
+    <origin xyz="0 0 0.12"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" lower="0" upper="3.14159265359" velocity="1.0"/>
+  </joint>
+  <link name="leftarm_low_arm">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.035"/>
+      <geometry>
+        <box size="0.02 0.04 0.07"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="0.1512"/>
+      <inertia ixx="0.00819" ixy="0.0" ixz="0.0" iyy="0.00819" iyz="0.0" izz="0.00819"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.035"/>
+      <geometry>
+        <box size="0.02 0.04 0.07"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="leftarm_wrist_1_joint" type="revolute">
+    <parent link="leftarm_low_arm"/>
+    <child link="leftarm_wri_1"/>
+    <origin xyz="0 0 0.07"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="leftarm_wri_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.015"/>
+      <geometry>
+        <box size="0.04 0.06 0.03"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.1944"/>
+      <inertia ixx="0.00729" ixy="0.0" ixz="0.0" iyy="0.00729" iyz="0.0" izz="0.00729"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.015"/>
+      <geometry>
+        <box size="0.04 0.06 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="leftarm_wrist_2_joint" type="revolute">
+    <parent link="leftarm_wri_1"/>
+    <child link="leftarm_gripper"/>
+    <origin xyz="0 0 0.03"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.7"/>
+    <limit effort="0.2" lower="-1.57079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="leftarm_gripper">
+    <visual>
+      <geometry>
+        <box size="0.06 0.03 0.04"/>
+      </geometry>
+      <origin rpy="0 0 0 " xyz="0.0 0 0"/>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value=".001"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="leftarm_left_finger_joint" type="revolute">
+    <origin rpy="0 -1.57079632679 0" xyz="0.0 0.01 0"/>
+    <parent link="leftarm_gripper"/>
+    <child link="leftarm_left_finger"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0001" lower="0" upper="0.785398163397" velocity="0.0001"/>
+  </joint>
+  <link name="leftarm_left_finger">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="leftarm_left_tip_joint" type="fixed">
+    <parent link="leftarm_left_finger"/>
+    <child link="leftarm_left_tip"/>
+  </joint>
+  <link name="leftarm_left_tip">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0.09137 0.00495 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="leftarm_right_finger_joint" type="revolute">
+    <origin rpy="0 -1.57079632679 0" xyz="0.0 -0.01 0"/>
+    <parent link="leftarm_gripper"/>
+    <child link="leftarm_right_finger"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0001" lower="-0.785398163397" upper="0" velocity="0.0001"/>
+  </joint>
+  <link name="leftarm_right_finger">
+    <visual>
+      <origin rpy="-3.1415 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="leftarm_right_tip_joint" type="fixed">
+    <parent link="leftarm_right_finger"/>
+    <child link="leftarm_right_tip"/>
+  </joint>
+  <link name="leftarm_right_tip">
+    <visual>
+      <origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <transmission name="leftarm_left_finger_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_left_finger_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_left_finger_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_right_finger_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_right_finger_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_right_finger_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_shoulder_1_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_shoulder_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_shoulder_1_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_shoulder_2_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_shoulder_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_shoulder_2_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_elbow_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_elbow_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_elbow_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_wrist_1_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_wrist_1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_wrist_1_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftarm_wrist_2_joint_tran">
+    <type> transmission_interface/SimpleTransmission</type>
+    <joint name="leftarm_wrist_2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftarm_wrist_2_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- Link1 -->
+  <gazebo reference="leftarm_sho">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="leftarm_upp_arm">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="leftarm_low_arm">
+    <material>Gazebo/Black</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+  <gazebo reference="leftarm_wri_1">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="leftarm_gripper">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
 </robot>
 
