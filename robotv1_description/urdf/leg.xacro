@@ -29,7 +29,7 @@
 
   <xacro:property name="lenx_foot" value="0.1"/>
   <xacro:property name="leny_foot" value="0.04"/>
-  <xacro:property name="lenz_foot" value="0.002"/>
+  <xacro:property name="lenz_foot" value="0.02"/>
   
   <xacro:property name="base_pos" value="${lenz_hip_3+lenz_upp_leg+lenz_low_leg+lenz_ang_2/2+lenz_foot}"/>
 

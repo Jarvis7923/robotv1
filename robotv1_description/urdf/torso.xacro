@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot name="torso" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="lenx_pelvis" value="0.08"/>
-  <xacro:property name="leny_pelvis" value="0.16"/>
-  <xacro:property name="lenz_pelvis" value="0.06"/>
+  <xacro:property name="lenx_pelvis" value="0.06"/>
+  <xacro:property name="leny_pelvis" value="0.12"/>
+  <xacro:property name="lenz_pelvis" value="0.04"/>
 
 <xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
 
@@ -25,8 +25,8 @@
   </link>
 
   <gazebo reference="pelvis" >
-    <mu1>0.2</mu1>
-    <mu2>0.2</mu2>
+    <mu1>0.4</mu1>
+    <mu2>0.4</mu2>
     <material>Gazebo/White</material>
   </gazebo>
 

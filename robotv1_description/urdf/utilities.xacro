@@ -6,9 +6,9 @@
     <inertial>
       <mass value="${mass}" />
       <inertia 
-      ixx="${100*mass*(lenz*lenz+leny*leny)/12}" ixy="0.0" ixz="0.0"
-      iyy="${100*mass*(lenz*lenz+leny*leny)/12}" iyz="0.0"
-      izz="${100*mass*(lenz*lenz+leny*leny)/12}" />
+      ixx="${mass*(lenz*lenz+leny*leny)/12.0}" ixy="0.0" ixz="0.0"
+      iyy="${mass*(lenz*lenz+lenx*lenx)/12.0}" iyz="0.0"
+      izz="${mass*(lenx*lenx+leny*leny)/12.0}" />
     </inertial>
   </xacro:macro>
 </robot>
