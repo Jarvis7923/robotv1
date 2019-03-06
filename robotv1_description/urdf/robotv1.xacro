@@ -17,7 +17,7 @@
 
 <xacro:leg prefix="leftleg" reflect="1"/>
 <xacro:leg prefix="rightleg" reflect="-1"/>
-<xacro:arm prefix="leftarm" />
+<xacro:arm prefix="leftarm" /> 
 
 
 </robot>

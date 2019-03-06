@@ -42,7 +42,7 @@
       <child link="${prefix}_hip_2"/>
       <origin xyz="0 ${leny_pelvis*reflect/2} 0"/>
       <axis xyz="0 1 0"/>
-      <dynamics damping="0.7"/>
+      <dynamics damping="0.9"/>
       <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
     </joint>
     
@@ -68,7 +68,7 @@
       <child link="${prefix}_hip_3"/>
       <origin xyz= "0 ${leny_hip_2*reflect} 0"/>
       <axis xyz="1 0 0"/>
-      <dynamics damping="0.7"/>
+      <dynamics damping="0.9"/>
       <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
     </joint>
 
@@ -94,7 +94,7 @@
       <child link="${prefix}_upp_leg"/>
       <origin xyz="0 0 ${-lenz_hip_3}"/>
       <axis xyz="0 0 1"/>
-      <dynamics damping="0.7"/>
+      <dynamics damping="0.9"/>
       <limit effort="2" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
     </joint>
 
@@ -120,7 +120,7 @@
       <child link="${prefix}_low_leg"/>
       <origin xyz="0 0 ${-lenz_upp_leg}"/>
       <axis xyz="0 1 0"/>
-      <dynamics damping="0.7"/>
+      <dynamics damping="0.9"/>
       <limit effort="2" velocity="1.0" lower="0" upper="${7*pi/8}" />
     </joint>
 
@@ -146,7 +146,7 @@
       <child link="${prefix}_ang_1"/>
       <origin xyz="0 0 ${-lenz_low_leg+lenz_ang_1/2}" rpy="0 0 0"/>
       <axis xyz="1 0 0"/>
-      <dynamics damping="0.7"/>
+      <dynamics damping="0.9"/>
       <limit effort="2" velocity="1.0" lower="${-pi/4}" upper="${pi/4}" />
     </joint>
 
@@ -172,7 +172,7 @@
        <child link="${prefix}_ang_2"/>
        <origin xyz="${-lenx_ang_1/2} 0 0"/>
        <axis xyz="0 1 0"/>
-       <dynamics damping="0.7"/>
+       <dynamics damping="0.9"/>
        <limit effort="2" velocity="1.0" lower="${-pi/4}" upper="${pi/4}" />
      </joint>
 
